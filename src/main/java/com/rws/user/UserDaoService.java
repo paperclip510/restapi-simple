@@ -48,12 +48,27 @@ public class UserDaoService {
 		while (iterator.hasNext()) {
 			User user = iterator.next();
 
-			if(user.getId() == id) {
+			if (user.getId() == id) {
 				iterator.remove();
 				return user;
 			}
 		}
 
 		return null;
+	}
+
+	// 사용자 수정
+	public User editById(User targetUser) {
+		long targetUserId = targetUser.getId();
+		
+		for (User user : users) {
+			if (user.getId() == targetUserId) {
+				user.setName(targetUser.getName());
+				return user;
+			}
+		}
+		
+		return null;
+
 	}
 }
