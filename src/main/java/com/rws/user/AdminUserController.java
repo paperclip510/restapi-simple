@@ -42,7 +42,10 @@ public class AdminUserController {
 
 	// 관리자는 사용자의 모든 정보 조회
 	// GET /admin/v1/users/1 -> /admin/v1/users/1
-	@GetMapping(path = "/v1//users/{id}")
+	//@GetMapping(path = "/v1/users/{id}")
+	//@GetMapping(path = "/users/{id}/", params = "version=1")
+	//@GetMapping(value="/users/{id}", headers="X-API-VERSION=1")
+	@GetMapping(path = "/users/{id}", produces = "application/vnd.company.appv1+json")
 	public MappingJacksonValue retrieveUserV1(@PathVariable long id) {
 		User user = service.findOne(id);
 
@@ -62,7 +65,10 @@ public class AdminUserController {
 	}
 
 	
-	@GetMapping(path = "/v2/users/{id}")
+	//@GetMapping(path = "/v2/users/{id}")
+	//@GetMapping(path = "/users/{id}/", params = "version=2")
+	//@GetMapping(value="/users/{id}", headers="X-API-VERSION=2")
+	@GetMapping(path = "/users/{id}", produces = "application/vnd.company.appv2+json")
 	public MappingJacksonValue retrieveUserV2(@PathVariable long id) {
 		User user = service.findOne(id);
 		
@@ -88,7 +94,9 @@ public class AdminUserController {
 		return mapping;
 	}
 	
+
 	
+
 	
 	
 	
