@@ -3,6 +3,8 @@ package com.rws.user;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,9 +41,8 @@ public class UserController {
 	}
 
 	@PostMapping(path="/users")//form 형태가 아닌 json 형태를 받기 위해서는 RequestBody어노테이션 선언
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		User savedUser = service.save(user);
-		
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 						.path("/{id}")
