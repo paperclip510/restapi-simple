@@ -16,18 +16,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIgnoreProperties(value = {"password", "ssn"})
-@JsonFilter("UserInfo")
-public class User {
-	private long Id;
-
-	@Size(min = 2, message = "Name은 2글자 이상 입력해주세요.")
-	private String name;
-
-	@Past
-	private Date joinDate;
-
-	//@JsonIgnore // 반환 결과에서 제외
-	private String password;
-	private String ssn;
+@JsonFilter("UserInfo2")
+public class UserV2 extends User{
+	private String grade;
+	
 }
