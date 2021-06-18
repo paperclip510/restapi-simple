@@ -1,10 +1,12 @@
 package com.rws.user;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -24,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class User {
 	@Id
 	@GeneratedValue
-	private long Id;
+	private long id;
 
 	@Size(min = 2, message = "Name은 2글자 이상 입력해주세요.")
 	@ApiModelProperty(notes = "사용자 이름을 입력해 주세요.")
@@ -39,4 +41,18 @@ public class User {
 	private String password;
 	@ApiModelProperty(notes = "사용자의 주민번호를 입력해 주세요.")
 	private String ssn;
+	
+	
+	@OneToMany(mappedBy = "user")
+	private List<Post> post;
+
+	public User(long id, String name, Date joinDate, String password, String ssn) {
+		this.id = id;
+		this.name = name;
+		this.joinDate = joinDate;
+		this.password = password;
+		this.ssn = ssn;
+				
+	}
+	
 }
